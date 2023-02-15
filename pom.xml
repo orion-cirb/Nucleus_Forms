@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+		http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+        
+	<groupId>cirb</groupId>
+	<artifactId>Nucleus_Forms</artifactId>
+	<version>1.00</version>
+        <packaging>jar</packaging>
+	<name>Nucleus_Forms</name>
+	<description>
+            Compute 2D shape factors of lamin-marked nuclei
+        </description>
+
+	<developers>
+		<developer>
+			<id>phm</id>
+			<name>Philippe Mailly</name>
+			<email>philippe.mailly@college-de-france.fr</email>
+			<url></url>
+			<organization>CIRB, Collège de France</organization>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<timezone>-1</timezone>
+		</developer>
+	</developers>
+
+	<properties>
+                <imagej.app.directory>/opt/Fiji.app/</imagej.app.directory>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<main-class>Nucleus_Forms.jar</main-class>
+	</properties>
+
+	<dependencies>
+		<dependency>
+                <groupId>net.imagej</groupId>
+                <artifactId>ij</artifactId>
+                <version>1.53j</version>
+            </dependency>                
+                        
+            <dependency>
+                <groupId>ome</groupId>
+                <artifactId>bio-formats_plugins</artifactId>
+                <version>6.8.1</version>
+            </dependency>
+            
+            <dependency>
+                    <groupId>ome</groupId>
+                    <artifactId>formats-common</artifactId>
+                    <version>5.2.4</version>
+                    <type>jar</type>
+             </dependency>  
+                          
+                     
+            <dependency>
+                <groupId>net.imglib2</groupId>
+                <artifactId>imglib2</artifactId>
+                <version>5.12.0</version>
+                <type>jar</type>
+            </dependency>
+            <dependency>
+                <groupId>mpicbg</groupId>
+                <artifactId>mpicbg</artifactId>
+                <version>20120621</version>
+                <type>jar</type>
+            </dependency>
+                <dependency>
+                    <groupId>org.hsqldb</groupId>
+                    <artifactId>hsqldb</artifactId>
+                    <version>2.4.0</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                  <groupId>uk.ac.sussex.gdsc</groupId>
+                  <artifactId>gdsc-core</artifactId>
+                  <version>2.0-SNAPSHOT</version>
+                </dependency>
+                <dependency>
+                    <groupId>sc.fiji</groupId>
+                    <artifactId>Calculator_Plus</artifactId>
+                    <version>2.0.2-SNAPSHOT</version>
+                    <type>jar</type>
+                </dependency>
+	 <dependency>
+	  <groupId>uk.ac.sussex.gdsc</groupId>
+	  <artifactId>gdsc-core-ij</artifactId>
+	  <version>2.0-SNAPSHOT</version>
+	  <type>jar</type>
+	 </dependency>
+	 <dependency>
+	  <groupId>sc.fiji</groupId>
+	  <artifactId>fiji-lib</artifactId>
+	  <version>2.1.4-SNAPSHOT</version>
+	  <type>jar</type>
+	 </dependency>
+	</dependencies>
+	
+        <repositories>
+            <repository>
+                <id>jitpack.io</id>
+                <url>https://jitpack.io</url>
+            </repository>
+            <repository>
+                <id>ome</id>
+                <url>https://artifacts.openmicroscopy.org/artifactory/ome.releases</url>
+            </repository>
+            <repository>
+                <id>ij</id>
+                <url>https://maven.imagej.net/content/repositories/releases/</url>
+            </repository>
+            <repository>
+                <id>scijava</id>
+                <url>https://maven.scijava.org/content/repositories/public/</url>
+            </repository>
+            <repository>
+                <id>clij</id>
+                <url>http://dl.bintray.com/haesleinhuepf/clij</url>
+            </repository>
+        </repositories>
+	<build>
+            <plugins>
+		<plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.3.2</version>
+                    <configuration>
+                        <showDeprecation>true</showDeprecation>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+		</plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>copytoplugins</id>
+                            <phase>install</phase>
+                            <goals>
+                                <goal>run</goal>
+                            </goals>
+                            <configuration>
+                                <tasks>
+                                    <copy todir="${imagej.app.directory}/plugins/CIRB" file="target/${project.build.finalName}.jar"/>
+                                </tasks>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+	</build>
+
+</project>
