@@ -2,7 +2,7 @@
 
 
 * **Developed for:** Rania
-* **Team:** Prochiantz
+* **Team:** Fuchs
 * **Date:** February 2023
 * **Software:** Fiji
 
